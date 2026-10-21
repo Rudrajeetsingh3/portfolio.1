@@ -1,0 +1,820 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Rudrajeet's personal portfolio showcasing Python projects, web development, AI tools, and programming skills.">
+    <meta name="author" content="Rudrajeet">
+    <title>Rudrajeet | Personal Portfolio</title>
+
+    <style>
+        :root {
+            --bg: #f5f7ff;
+            --card: #ffffff;
+            --text: #172033;
+            --muted: #64748b;
+            --primary: #5b5cf0;
+            --border: #e2e8f0;
+            --shadow: 0 8px 28px rgba(30, 41, 59, 0.08);
+        }
+
+        body.dark {
+            --bg: #0b1120;
+            --card: #151e30;
+            --text: #f1f5f9;
+            --muted: #a5b4c8;
+            --primary: #a5a6ff;
+            --border: #293449;
+            --shadow: 0 8px 28px rgba(0, 0, 0, 0.2);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 85px;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            transition: background 0.25s, color 0.25s;
+        }
+
+        a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        button, input, select {
+            font: inherit;
+        }
+
+        button, .btn {
+            cursor: pointer;
+        }
+
+        .container {
+            width: min(1100px, 90%);
+            margin: auto;
+        }
+
+        header {
+            background: var(--card);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .navbar {
+            min-height: 72px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 18px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        nav a {
+            color: var(--text);
+            font-weight: 600;
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .small-btn, .btn {
+            border: 1px solid var(--border);
+            border-radius: 9px;
+            padding: 9px 14px;
+            background: var(--card);
+            color: var(--text);
+        }
+
+        .btn.primary {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .menu-btn {
+            display: none;
+        }
+
+        section {
+            padding: 76px 0;
+        }
+
+        .hero {
+            min-height: 480px;
+            display: flex;
+            align-items: center;
+            background:
+                radial-gradient(circle at 85% 15%, rgba(91, 92, 240, 0.13), transparent 32%);
+        }
+
+        .hero-content {
+            max-width: 760px;
+        }
+
+        .eyebrow {
+            color: var(--primary);
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 7vw, 4.6rem);
+            line-height: 1.12;
+            margin: 12px 0 18px;
+        }
+
+        h2 {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            margin-bottom: 14px;
+        }
+
+        h3 {
+            margin-bottom: 10px;
+        }
+
+        .accent {
+            color: var(--primary);
+        }
+
+        .lead {
+            font-size: 1.15rem;
+            color: var(--muted);
+            max-width: 700px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 25px;
+        }
+
+        .section-heading {
+            margin-bottom: 30px;
+        }
+
+        .section-heading p, .muted {
+            color: var(--muted);
+        }
+
+        .card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: var(--shadow);
+        }
+
+        .about-grid, .skills-grid, .project-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 20px;
+        }
+
+        .skills-grid {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+
+        .skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 9px;
+            margin-top: 14px;
+        }
+
+        .tag {
+            display: inline-block;
+            background: rgba(91, 92, 240, 0.10);
+            color: var(--primary);
+            border-radius: 30px;
+            padding: 5px 11px;
+            font-size: 0.88rem;
+            font-weight: 600;
+        }
+
+        .project-tools {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .project-tools input,
+        .project-tools select,
+        .chat-form input {
+            min-width: 0;
+            padding: 12px;
+            border: 1px solid var(--border);
+            border-radius: 9px;
+            background: var(--card);
+            color: var(--text);
+        }
+
+        .project-tools input {
+            flex: 1;
+            min-width: 220px;
+        }
+
+        .project-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .project-card {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .project-card p {
+            color: var(--muted);
+        }
+
+        .project-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: auto;
+            padding-top: 8px;
+            font-weight: 700;
+        }
+
+        .project-card[hidden] {
+            display: none;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .contact-list {
+            list-style: none;
+            margin-top: 15px;
+        }
+
+        .contact-list li {
+            margin: 12px 0;
+            overflow-wrap: anywhere;
+        }
+
+        .chat-messages {
+            min-height: 110px;
+            max-height: 260px;
+            overflow-y: auto;
+            margin: 15px 0;
+        }
+
+        .message {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 10px 12px;
+            margin-bottom: 10px;
+            overflow-wrap: anywhere;
+        }
+
+        .chat-form {
+            display: flex;
+            gap: 8px;
+        }
+
+        .chat-form input {
+            flex: 1;
+            width: 100%;
+        }
+
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 25px 0;
+            color: var(--muted);
+            text-align: center;
+        }
+
+        @media (max-width: 800px) {
+            .skills-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            nav {
+                display: none;
+                position: absolute;
+                top: 72px;
+                left: 0;
+                right: 0;
+                padding: 20px 5%;
+                background: var(--card);
+                border-bottom: 1px solid var(--border);
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            nav.open {
+                display: flex;
+            }
+
+            .menu-btn {
+                display: inline-block;
+            }
+        }
+
+        @media (max-width: 600px) {
+            section {
+                padding: 55px 0;
+            }
+
+            .about-grid, .skills-grid, .project-grid, .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .navbar {
+                flex-wrap: wrap;
+            }
+
+            .logo {
+                font-size: 1.25rem;
+            }
+
+            .card {
+                padding: 19px;
+            }
+
+            .chat-form {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container navbar">
+            <a class="logo" href="#home">Rudrajeet<span class="accent">.</span></a>
+
+            <nav id="navigation" aria-label="Main navigation">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#skills">Skills</a>
+                <a href="#projects">Projects</a>
+                <a href="#contact">Contact</a>
+            </nav>
+
+            <div class="nav-actions">
+                <button class="small-btn" id="themeToggle" type="button"
+                        aria-label="Toggle dark mode">🌙</button>
+                <button class="small-btn menu-btn" id="menuToggle" type="button"
+                        aria-label="Toggle navigation" aria-expanded="false">☰</button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero" id="home">
+            <div class="container hero-content">
+                <p class="eyebrow">Welcome to my portfolio</p>
+                <h1>Hi, I'm <span class="accent">Rudrajeet</span></h1>
+                <p class="lead">
+                    B.Tech CSE (AI/ML) Student | Aspiring Software Developer
+                </p>
+                <p class="muted" style="margin-top: 15px;">
+                    I enjoy programming, building web applications, improving code,
+                    and exploring how AI tools can make development easier.
+                </p>
+
+                <div class="hero-buttons">
+                    <a class="btn primary" href="#projects">Explore My Projects</a>
+                    <a class="btn" href="#contact">Contact Me</a>
+                    <a class="btn" href="https://github.com/Rudrajeetsingh3?tab=repositories"
+                       target="_blank" rel="noopener noreferrer">My GitHub</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="about">
+            <div class="container">
+                <div class="section-heading">
+                    <p class="eyebrow">A little about me</p>
+                    <h2>About Me</h2>
+                    <p>My interests, learning journey, and goals.</p>
+                </div>
+
+                <div class="about-grid">
+                    <article class="card">
+                        <h3>Who I Am</h3>
+                        <p class="muted">
+                            I am a Computer Science student interested in Artificial
+                            Intelligence, Machine Learning, Python programming, and
+                            web development. I enjoy learning by building practical
+                            projects and solving programming problems.
+                        </p>
+                    </article>
+
+                    <article class="card">
+                        <h3>My Goals</h3>
+                        <p class="muted">
+                            My goal is to strengthen my programming fundamentals,
+                            write cleaner code, build useful applications, and
+                            develop the skills needed to become a software developer.
+                        </p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills">
+            <div class="container">
+                <div class="section-heading">
+                    <p class="eyebrow">What I'm learning</p>
+                    <h2>Skills & Technologies</h2>
+                    <p>Tools and topics I work with in my projects.</p>
+                </div>
+
+                <div class="skills-grid">
+                    <article class="card">
+                        <h3>Programming</h3>
+                        <p class="muted">Writing programs and solving problems.</p>
+                        <div class="skill-list">
+                            <span class="tag">Python</span>
+                            <span class="tag">Problem Solving</span>
+                            <span class="tag">Debugging</span>
+                        </div>
+                    </article>
+
+                    <article class="card">
+                        <h3>Web Development</h3>
+                        <p class="muted">Building interactive web interfaces.</p>
+                        <div class="skill-list">
+                            <span class="tag">HTML</span>
+                            <span class="tag">CSS</span>
+                            <span class="tag">JavaScript</span>
+                        </div>
+                    </article>
+
+                    <article class="card">
+                        <h3>AI & Developer Tools</h3>
+                        <p class="muted">Exploring tools that support coding.</p>
+                        <div class="skill-list">
+                            <span class="tag">AI Tools</span>
+                            <span class="tag">Cursor AI</span>
+                            <span class="tag">GitHub</span>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects">
+            <div class="container">
+                <div class="section-heading">
+                    <p class="eyebrow">What I've built</p>
+                    <h2>My Projects</h2>
+                    <p>Explore my programming practice and interactive applications.</p>
+                </div>
+
+                <div class="project-tools">
+                    <input type="search" id="projectSearch"
+                           placeholder="Search projects..."
+                           aria-label="Search projects">
+
+                    <select id="projectFilter" aria-label="Filter projects by category">
+                        <option value="all">All Projects</option>
+                        <option value="python">Python</option>
+                        <option value="web">Web Development</option>
+                        <option value="ai">AI & Code Improvement</option>
+                    </select>
+                </div>
+
+                <div class="project-grid" id="projectGrid">
+                    <article class="card project-card" data-category="python"
+                             data-search="python programs collection programming practice">
+                        <div>
+                            <span class="tag">Python</span>
+                        </div>
+                        <h3>Python Programs Collection</h3>
+                        <p>
+                            A collection of Python programs created to practise
+                            programming concepts and problem-solving techniques.
+                        </p>
+                        <div class="project-links">
+                            <a href="https://github.com/Rudrajeetsingh3/python-program-collection-"
+                               target="_blank" rel="noopener noreferrer">View Code ↗</a>
+                        </div>
+                    </article>
+
+                    <article class="card project-card" data-category="python"
+                             data-search="messy python code improvement clean refactor">
+                        <div>
+                            <span class="tag">Python</span>
+                        </div>
+                        <h3>Messy Python Code Improvement</h3>
+                        <p>
+                            A project focused on improving code readability,
+                            organization, and maintainability.
+                        </p>
+                        <div class="project-links">
+                            <a href="https://github.com/Rudrajeetsingh3/messy-python-code-improvement"
+                               target="_blank" rel="noopener noreferrer">View Code ↗</a>
+                        </div>
+                    </article>
+
+                    <article class="card project-card" data-category="ai"
+                             data-search="bug fixing cursor ai debugging">
+                        <div>
+                            <span class="tag">AI & Debugging</span>
+                        </div>
+                        <h3>Bug Fixing Using Cursor AI</h3>
+                        <p>
+                            An exploration of AI-assisted debugging and code
+                            improvement using Cursor AI.
+                        </p>
+                        <div class="project-links">
+                            <a href="https://github.com/Rudrajeetsingh3/bug-fixing-using-cursor-ai"
+                               target="_blank" rel="noopener noreferrer">View Code ↗</a>
+                        </div>
+                    </article>
+
+                    <article class="card project-card" data-category="web"
+                             data-search="code with ai quiz quiz application">
+                        <div>
+                            <span class="tag">Web Development</span>
+                        </div>
+                        <h3>Code With AI Quiz</h3>
+                        <p>
+                            An interactive quiz application where users can answer
+                            questions and see their final score.
+                        </p>
+                        <div class="project-links">
+                            <a href="https://github.com/Rudrajeetsingh3/quiz.1"
+                               target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+                            <a href="https://quiz1-74tcwhabz-r1-44af.vercel.app"
+                               target="_blank" rel="noopener noreferrer">Live Demo ↗</a>
+                        </div>
+                    </article>
+
+                    <article class="card project-card" data-category="web"
+                             data-search="book reading list books reading tracker">
+                        <div>
+                            <span class="tag">Web Development</span>
+                        </div>
+                        <h3>Book Reading List</h3>
+                        <p>
+                            A reading-list application for organizing books and
+                            keeping track of a personal reading collection.
+                        </p>
+                        <div class="project-links">
+                            <a href="https://github.com/Rudrajeetsingh3/book-reading-lists"
+                               target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+                            <a href="https://book-reading-lists-i2rkd1fod-r1-44af.vercel.app"
+                               target="_blank" rel="noopener noreferrer">Live Demo ↗</a>
+                        </div>
+                    </article>
+                </div>
+
+                <p id="noProjects" class="muted" hidden>
+                    No projects match your search. Try another keyword or category.
+                </p>
+            </div>
+        </section>
+
+        <section id="contact">
+            <div class="container">
+                <div class="section-heading">
+                    <p class="eyebrow">Let's connect</p>
+                    <h2>Contact Me</h2>
+                    <p>Have a question about my projects? Feel free to reach out.</p>
+                </div>
+
+                <div class="contact-grid">
+                    <article class="card">
+                        <h3>Contact Information</h3>
+                        <ul class="contact-list">
+                            <li>
+                                <strong>Email:</strong>
+                                <a href="mailto:jrudra803@gmail.com">
+                                    jrudra803@gmail.com
+                                </a>
+                            </li>
+                            <li>
+                                <strong>GitHub:</strong>
+                                <a href="https://github.com/Rudrajeetsingh3?tab=repositories"
+                                   target="_blank" rel="noopener noreferrer">
+                                    View All My Repositories
+                                </a>
+                            </li>
+                        </ul>
+
+                        <p class="muted" style="margin-top: 18px;">
+                            I'm interested in learning, collaborating on projects,
+                            and exploring new programming ideas.
+                        </p>
+                    </article>
+
+                    <article class="card" id="chatbot">
+                        <h3>Portfolio Assistant</h3>
+                        <p class="muted">
+                            Ask a quick question about my skills or projects.
+                        </p>
+
+                        <div class="chat-messages" id="chatMessages"
+                             aria-live="polite">
+                            <div class="message">
+                                Hi! I'm the portfolio assistant. Ask me about
+                                projects, skills, or contact details.
+                            </div>
+                        </div>
+
+                        <form class="chat-form" id="chatForm">
+                            <input type="text" id="chatInput"
+                                   placeholder="Type your question..."
+                                   aria-label="Your question" required>
+                            <button class="btn primary" type="submit">Send</button>
+                        </form>
+                        <p class="muted" style="font-size: 0.82rem; margin-top: 10px;">
+                            This is a local FAQ assistant, not a live AI service.
+                        </p>
+                    </article>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>
+                © <span id="year"></span> Rudrajeet.
+                Built with HTML, CSS, and JavaScript.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Automatically update the footer year.
+        document.getElementById("year").textContent =
+            new Date().getFullYear();
+
+        // Mobile navigation.
+        const menuToggle = document.getElementById("menuToggle");
+        const navigation = document.getElementById("navigation");
+
+        menuToggle.addEventListener("click", () => {
+            const isOpen = navigation.classList.toggle("open");
+            menuToggle.setAttribute("aria-expanded", String(isOpen));
+        });
+
+        navigation.querySelectorAll("a").forEach(link => {
+            link.addEventListener("click", () => {
+                navigation.classList.remove("open");
+                menuToggle.setAttribute("aria-expanded", "false");
+            });
+        });
+
+        // Dark mode toggle.
+        const themeToggle = document.getElementById("themeToggle");
+
+        themeToggle.addEventListener("click", () => {
+            const isDark = document.body.classList.toggle("dark");
+            themeToggle.textContent = isDark ? "☀️" : "🌙";
+            themeToggle.setAttribute(
+                "aria-label",
+                isDark ? "Switch to light mode" : "Switch to dark mode"
+            );
+        });
+
+        // Search and filter projects.
+        const searchInput = document.getElementById("projectSearch");
+        const filterSelect = document.getElementById("projectFilter");
+        const projectCards = document.querySelectorAll(".project-card");
+        const noProjects = document.getElementById("noProjects");
+
+        function filterProjects() {
+            const query = searchInput.value.trim().toLowerCase();
+            const category = filterSelect.value;
+            let visibleCount = 0;
+
+            projectCards.forEach(card => {
+                const searchableText =
+                    (card.dataset.search + " " + card.textContent).toLowerCase();
+
+                const matchesSearch = searchableText.includes(query);
+                const matchesCategory =
+                    category === "all" || card.dataset.category === category;
+
+                const visible = matchesSearch && matchesCategory;
+                card.hidden = !visible;
+
+                if (visible) visibleCount++;
+            });
+
+            noProjects.hidden = visibleCount !== 0;
+        }
+
+        searchInput.addEventListener("input", filterProjects);
+        filterSelect.addEventListener("change", filterProjects);
+
+        // Simple local FAQ chatbot.
+        // This does not connect to an external AI model.
+        const chatForm = document.getElementById("chatForm");
+        const chatInput = document.getElementById("chatInput");
+        const chatMessages = document.getElementById("chatMessages");
+
+        function addMessage(text, sender) {
+            const message = document.createElement("div");
+            message.className = "message";
+            message.textContent =
+                (sender === "user" ? "You: " : "Assistant: ") + text;
+            chatMessages.appendChild(message);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function getReply(question) {
+            const q = question.toLowerCase();
+
+            if (q.includes("hello") || q.includes("hi")) {
+                return "Hello! Welcome to Rudrajeet's portfolio. What would you like to know?";
+            }
+
+            if (q.includes("project") || q.includes("work")) {
+                return "There are five featured projects: Python Programs Collection, Messy Python Code Improvement, Bug Fixing Using Cursor AI, Code With AI Quiz, and Book Reading List. Visit the Projects section to explore them.";
+            }
+
+            if (q.includes("quiz")) {
+                return "The Code With AI Quiz is an interactive quiz application. Use its Live Demo link in the Projects section.";
+            }
+
+            if (q.includes("book") || q.includes("reading")) {
+                return "The Book Reading List project helps organize a personal reading collection. Its GitHub repository and live demo are listed in Projects.";
+            }
+
+            if (q.includes("python")) {
+                return "Python is featured in the programming collection and code improvement projects. Check the Projects section for the source code.";
+            }
+
+            if (q.includes("skill") || q.includes("technology") ||
+                q.includes("language")) {
+                return "The portfolio highlights Python, HTML, CSS, JavaScript, GitHub, AI tools, and debugging.";
+            }
+
+            if (q.includes("email") || q.includes("contact")) {
+                return "You can contact Rudrajeet at jrudra803@gmail.com or visit the GitHub profile linked in the Contact section.";
+            }
+
+            if (q.includes("github") || q.includes("repository") ||
+                q.includes("repo")) {
+                return "Visit https://github.com/Rudrajeetsingh3?tab=repositories to explore the GitHub repositories.";
+            }
+
+            if (q.includes("ai") || q.includes("cursor")) {
+                return "The portfolio includes a Bug Fixing Using Cursor AI project that explores AI-assisted debugging.";
+            }
+
+            return "I can answer basic questions about projects, Python, skills, GitHub, and contact details. Try asking about one of those topics.";
+        }
+
+        chatForm.addEventListener("submit", event => {
+            event.preventDefault();
+
+            const question = chatInput.value.trim();
+            if (!question) return;
+
+            addMessage(question, "user");
+            addMessage(getReply(question), "assistant");
+            chatInput.value = "";
+            chatInput.focus();
+        });
+    </script>
+</body>
+</html>
+```
