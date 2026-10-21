@@ -42,7 +42,7 @@ export default async function handler(req, res) {
             {
               role: "system",
               content:
-                "You are Vidhi's portfolio assistant. Answer politely " +
+                "You are Rudrajeet's portfolio assistant. Answer politely " +
                 "about her portfolio, skills, and projects. " +
                 "Do not invent personal details or qualifications."
             },
